@@ -3,5 +3,6 @@ package app
 import "github.com/miguelhun/go-microservices/src/api/controllers/repositories"
 
 func mapUrls() {
-	router.POST("/repositories", repositories.CreateRepo)
+	router.POST("/repository", repositories.CreateRepo)
+	router.POST("/repositories", repositories.CreateRepos)
 }
