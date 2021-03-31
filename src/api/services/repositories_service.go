@@ -7,6 +7,7 @@ import (
 	"github.com/miguelhun/go-microservices/src/api/config"
 	"github.com/miguelhun/go-microservices/src/api/domain/github"
 	"github.com/miguelhun/go-microservices/src/api/domain/repositories"
+	"github.com/miguelhun/go-microservices/src/api/log"
 	"github.com/miguelhun/go-microservices/src/api/providers/github_provider"
 	"github.com/miguelhun/go-microservices/src/api/utils/errors"
 )
@@ -39,6 +40,7 @@ func (rs *repoService) CreateRepo(input repositories.CreateRepoRequest) (*reposi
 
 	response, err := github_provider.CreateRepo(config.GetGithubAccessToken(), request)
 	if err != nil {
+		log.Error("response from external api", err, "status:error")
 		return nil, errors.NewApiError(err.StatusCode, err.Message)
 	}
 
